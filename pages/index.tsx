@@ -22,7 +22,7 @@ const Page: NextPage<PageProps> = (props) => {
       
       <Introduction/>
 
-      <h1>POWRED BY SUPER UNCHI CODING</h1>
+      <h1>POWERED BY SUPER UNCHI CODING</h1>
 
       {/* <h2>blog</h2> 
       <section>
