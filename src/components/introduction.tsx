@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import Links from '../components/links'
 
-import unchi from '../../assets/unchi.svg'
+import unchi from '../../public/unchi.svg'
 
 const Introduction = () => {
   return (

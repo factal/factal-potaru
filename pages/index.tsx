@@ -14,12 +14,14 @@ type StaticProps = {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Page: NextPage<PageProps> = (props) => {
-  const { siteData, blogList } = props;
+  const { siteData, blogList } = props
 
   return (
     <main>
 
       <title>factal-potaru</title>
+
+      
 
       <h1>{siteData.title}</h1>
 

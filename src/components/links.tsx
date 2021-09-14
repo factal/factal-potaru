@@ -3,10 +3,10 @@ import Image from 'next/image'
 
 import styles from '../../styles/links.module.sass'
 
-import twitter from '../../assets/twitter.svg'
-import soundcloud from '../../assets/soundcloud.svg'
-import github from '../../assets/github.svg'
-import bandcamp from '../../assets/bandcamp.svg'
+import twitter from '../../public/twitter.svg'
+import soundcloud from '../../public/soundcloud.svg'
+import github from '../../public/github.svg'
+import bandcamp from '../../public/bandcamp.svg'
 
 interface Props {
   sns: any
