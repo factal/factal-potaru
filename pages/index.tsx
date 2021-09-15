@@ -11,7 +11,7 @@ type StaticProps = {
   blogList: ArticleListResponse
 }
 
-type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>
 
 const Page: NextPage<PageProps> = (props) => {
   const { siteData, blogList } = props
@@ -21,20 +21,18 @@ const Page: NextPage<PageProps> = (props) => {
 
       <title>factal-potaru</title>
 
-      
-
       <h1>{siteData.title}</h1>
-
-      
 
       <Introduction/>
 
       <h2>blog</h2> 
       <section>
         <ul>
-          {blogList.contents.map((blog) => (
+        {
+          blogList.contents.map((blog) => (
             <h3>{blog.title}</h3>
-          ))}
+          )) 
+        }
         </ul>
       </section>
 
@@ -45,6 +43,7 @@ const Page: NextPage<PageProps> = (props) => {
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+  
   const siteDataPromise = client.v1.sitedata.$get({
     query: { fields: "title" },
   })
