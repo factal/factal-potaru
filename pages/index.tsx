@@ -30,7 +30,8 @@ const Page: NextPage<PageProps> = (props) => {
         <ul>
         {
           blogList.contents.map((blog) => (
-            <h3>{blog.title}</h3>
+            <h3>{blog.title} {blog.id}</h3>
+            
           )) 
         }
         </ul>
@@ -63,4 +64,4 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   }
 }
 
-export default Page;
+export default Page

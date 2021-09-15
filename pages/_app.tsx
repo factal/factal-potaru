@@ -7,10 +7,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <head>
         <link rel='icon' type='image/ico'  href='/favicon.ico'/>
+
       </head>
 
       <Component {...pageProps} />
     </>
   )
 }
+
 export default MyApp
