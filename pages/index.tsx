@@ -4,7 +4,7 @@ import { InferGetStaticPropsType, NextPage, GetStaticProps } from 'next'
 import { ArticleListResponse } from '../src/types/article'
 import { SiteDataResponse } from '../src/types/siteData'
 import { client } from '../src/utils/api'
-import Introduction from '../src/components/introduction'
+import Introduction from '../src/components/Introduction'
 import Container from '../src/components/Container'
 
 type StaticProps = {
