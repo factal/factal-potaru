@@ -34,6 +34,8 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <main>
 
+      <title>{blog.title}</title>
+
       <h1>{blog.title}</h1>
       <div dangerouslySetInnerHTML={{__html: blog.body}}/>
 
