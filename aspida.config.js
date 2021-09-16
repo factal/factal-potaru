@@ -1,3 +1,3 @@
 module.exports = {
-  input: "pages/api",
+  input: 'src/api',
 }

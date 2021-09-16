@@ -15,14 +15,53 @@
     animation: bordercolor_green 3s ease infinite
 
 .info
-  padding: 0 12px 12px
+  word-wrap: break-word
+  padding: 0px 12px 12px
 
 .title
   height: 3em
   line-height: 1.5em
   white-space: normal
+  overflow: hidden
+  text-overflow: clip
   font-size: 110%
   font-weight: 400
+
+.bottom
+    position: relative
+    padding-top: .8rem
+    font-size: 15px
+    color: #8f969f
+    box-sizing: border-box
+    display: flex
+    flex: 0 1 auto
+    flex-direction: row
+    flex-wrap: wrap
+    padding: 0 12px
+
+.tags
+  overflow-x: hidden
+  white-space: nowrap
+  padding: 12px 12px 5px
+  border-radius: 16px 16px 0 0
+
+.tag
+  position: relative
+  display: inline-block
+  margin: 0 5px 0 0!important
+  padding: 0 1em!important
+  border-radius: 8px
+  text-transform: uppercase
+  text-decoration: none
+  font-size: .8em
+  line-height: 1rem
+  vertical-align: top
+  color: #f1f3f6!important
+  background: #253045
+  z-index: 10
+
+// &:hover
+//    animation: bgcolor_sherbet 3s ease infinite
 
 @keyframes bordercolor_green 
   0% 
@@ -36,3 +75,11 @@
   100% 
     border-color: #43cea2
     filter: hue-rotate(1turn)
+
+@keyframes bgcolor_sherbet
+  0%
+    background-color:#f79d00
+  50%
+    background-color:#64f38c
+  100% 
+    background-color:#f79d00

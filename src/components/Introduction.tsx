@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import styles from './Introduction.module.sass'
 
 import Links from './Links'
 
@@ -11,7 +12,7 @@ const Introduction = () => {
       <h2>about</h2>
 
       <div style={{textAlign: 'center'}}>
-        <Image src={unchi} width={300} height={300} />
+        <Image src={unchi} width={300} height={300} id={styles.picture} />
       </div>
 
       <p style={{ textAlign: 'center' }}>空山人不見<br/>但聞人語響<br/>返景入深林<br/>復照青苔上</p>

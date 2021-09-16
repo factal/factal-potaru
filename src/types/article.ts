@@ -6,6 +6,6 @@ export type ArticleListResponse = ListContentsResponse<ArticleResponse>
 export type ArticleResponse = ContentResponse<{
   title: string
   body: string
-  tags?: TagResponse[]
+  tags: TagResponse[]
   enableMath: Boolean
 }>

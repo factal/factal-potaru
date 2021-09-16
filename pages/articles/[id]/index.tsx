@@ -1,9 +1,11 @@
 import { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import Script from 'next/script'
+import { useEffect } from 'react'
+
 import Footer from '../../../src/components/Footer'
 import { ArticleResponse } from '../../../src/types/article'
 import { client } from '../../../src/utils/api'
+import renderKatex from '../../../src/utils/renderKatex'
 import { toStringId } from '../../../src/utils/toStringId'
 
 type StaticProps = {
@@ -21,18 +23,23 @@ const Page: NextPage<PageProps> = (props) => {
     return <div>Loading...</div>
   }
 
+  useEffect( () => {
+    router.events.on('routeChangeComplete', renderKatex)
+
+    return () => {
+      router.events.off('hashChangeComplete', renderKatex)
+    }
+  }, [])
+
   return (
-  <main>
-    <head>
-      <LoadMathJax enabled={blog.enableMath}/>
-    </head>
+    <main>
 
-    <h1>{blog.title}</h1>
-    <div dangerouslySetInnerHTML={{__html: blog.body}}/>
+      <h1>{blog.title}</h1>
+      <div dangerouslySetInnerHTML={{__html: blog.body}}/>
 
-    <Footer />
+      <Footer />
 
-  </main>
+    </main>
   )
 }
 
@@ -69,14 +76,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 
 type Props = {
   enabled: Boolean
-}
-
-const LoadMathJax: React.FC<Props> = (props) => {
-  if (props.enabled) {
-    return <Script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js' strategy='beforeInteractive'/>
-  } else {
-    return <></>
-  }
 }
 
 export default Page

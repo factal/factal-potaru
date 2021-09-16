@@ -11,11 +11,21 @@ type Props = {
 const Card: React.FC<Props> = (props) => {
   return (
     <Link href={'/articles/'+props.article.id} as={'/articles/'+props.article.id}>
-      <section className={styles.card}>
+      <div className={styles.card}>
+        <div className={styles.tags}>
+          {props.article.tags.map( (tag) => {
+            return <div className={styles.tag} key={tag.id} >{tag.name}</div>
+          })}
+        </div>
+
         <div className={styles.info}>
           <h3 className={styles.title}>{props.article.title}</h3>
         </div>
-      </section>
+
+        <div className={styles.bottom}>
+          {props.article.publishedAt}
+        </div>
+      </div>
     </Link>
   )
 }
