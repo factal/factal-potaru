@@ -1,8 +1,8 @@
 import { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { useEffect } from 'react'
+import BackButton from '../../../src/components/BackButton'
 
-import Footer from '../../../src/components/Footer'
 import { ArticleResponse } from '../../../src/types/article'
 import { client } from '../../../src/utils/api'
 import renderKatex from '../../../src/utils/renderKatex'
@@ -34,12 +34,12 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <main>
 
+      <BackButton />
+
       <title>{blog.title}</title>
 
       <h1>{blog.title}</h1>
       <div dangerouslySetInnerHTML={{__html: blog.body}}/>
-
-      <Footer />
 
     </main>
   )

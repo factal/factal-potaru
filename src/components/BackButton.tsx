@@ -1,14 +1,16 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
+
 import styles from './BackButton.module.sass'
+import Link from 'next/link'
 
 const BackButton = () => {
   return (
-    <Link href='/' as='/'>
-      <button className={styles.button}>
-        <Image className={styles.arrow} src='/arrow.svg' width='20px' height='20px' />
-      </button>
+    <Link href='/'>
+      
+      <div className={styles.button}>
+        <span className={styles.text}>back</span>
+      </div>
     </Link>
   )
 }

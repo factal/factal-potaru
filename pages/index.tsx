@@ -27,6 +27,8 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <main>
 
+
+
       <title>factal-potaru</title>
 
       <Introduction/>

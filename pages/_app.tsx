@@ -6,8 +6,12 @@ import Script from 'next/script'
 import Header from '../src/components/Header'
 import renderKatex from '../src/utils/renderKatex'
 import '../styles/globals.sass'
+import Transition from '../src/components/Transition'
+import { useRouter } from 'next/dist/client/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+
   return (
     <>
       <head>
@@ -17,8 +21,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       </head>
 
       <Header/>
-
-      <Component {...pageProps} />
+      
+      <Transition location={router.pathname} >
+        <Component {...pageProps} />
+      </Transition>
     </>
   )
 }
