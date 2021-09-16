@@ -1,0 +1,38 @@
+.card
+  position: relative
+  background: #f1f3f6
+  border: 3px solid transparent
+  box-shadow: -1.5px -1.5px 2px hsl(0deg 0% 100% / 95%), 1px 1px 3px rgb(28 64 128 / 15%)
+  transition: box-shadow -4s ease-out
+  border-radius: 20px
+  padding: 0 12px 12px
+  cursor: pointer
+  z-index: 2
+
+  &:hover
+    box-shadow: -5px -5px 8px #fff, 5px 5px 10px rgb(28 64 128 / 15%)
+    z-index: 2
+    animation: bordercolor_green 3s ease infinite
+
+.info
+  padding: 0 12px 12px
+
+.title
+  height: 3em
+  line-height: 1.5em
+  white-space: normal
+  font-size: 110%
+  font-weight: 400
+
+@keyframes bordercolor_green 
+  0% 
+    border-color: #43cea2
+    filter: hue-rotate(.0turn)
+	
+  50% 
+    border-color: #43cea2 
+    filter: hue-rotate(.5turn)
+	
+  100% 
+    border-color: #43cea2
+    filter: hue-rotate(1turn)

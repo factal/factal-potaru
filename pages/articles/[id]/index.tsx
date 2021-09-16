@@ -1,6 +1,7 @@
 import { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import Script from 'next/script'
+import Footer from '../../../src/components/Footer'
 import { ArticleResponse } from '../../../src/types/article'
 import { client } from '../../../src/utils/api'
 import { toStringId } from '../../../src/utils/toStringId'
@@ -26,7 +27,11 @@ const Page: NextPage<PageProps> = (props) => {
       <LoadMathJax enabled={blog.enableMath}/>
     </head>
 
+    <h1>{blog.title}</h1>
     <div dangerouslySetInnerHTML={{__html: blog.body}}/>
+
+    <Footer />
+
   </main>
   )
 }
@@ -35,14 +40,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     fallback: "blocking",
     paths: [],
-  };
-};
+  }
+}
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   const { params } = context
 
   if (!params?.id) {
-    throw new Error("Error: ID not found")
+    throw new Error('Error: ID not found')
   }
 
   const id = toStringId(params.id)
@@ -50,7 +55,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   try {
     const blog = await client.v1.articles._id(id).$get({
       query: {
-        fields: "id,title,body,publishedAt,tags,enableMath",
+        fields: 'id,title,body,publishedAt,tags,enableMath',
       },
     })
     return {
@@ -58,7 +63,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
       revalidate: 60,
     }
   } catch (e) {
-    return { notFound: true };
+    return { notFound: true }
   }
 }
 
@@ -68,12 +73,10 @@ type Props = {
 
 const LoadMathJax: React.FC<Props> = (props) => {
   if (props.enabled) {
-    return <Script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js' strategy="lazyOnload"/>
+    return <Script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js' strategy='beforeInteractive'/>
   } else {
     return <></>
   }
 }
-
-
 
 export default Page
