@@ -13,7 +13,8 @@ const NoteHeader: React.FC<Props> = (props) => {
       {props.article.tags.map( (tag) => {
         return <Tag id={tag.id} name={tag.name} key={tag.id} />
       })}
-      <h1 className={styles.title}>{props.article.title}</h1>
+      <h1 className={styles.title}> {props.article.title} </h1>
+      <p className={styles.publishedAt}> {props.article.publishedAt} </p>
     </div>
   )
 }

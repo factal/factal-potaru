@@ -5,7 +5,6 @@ import BackButton from '../../../src/components/BackButton'
 import Note from '../../../src/components/Note'
 import { ArticleResponse } from '../../../src/types/article'
 import { client } from '../../../src/utils/api'
-import renderKatex from '../../../src/utils/renderKatex'
 import { toStringId } from '../../../src/utils/toStringId'
 
 import cheerio from 'cheerio'
@@ -45,7 +44,7 @@ const Page: NextPage<PageProps> = (props) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     fallback: "blocking",
-    paths: [],
+    paths: []
   }
 }
 
