@@ -35,7 +35,7 @@ const Transition: React.FC<Props> = (props) => {
                 opacity: 1,
                 margin: 0,
                 height: '100%',
-                //position: 'absolute',
+                position: 'absolute',
                 //@ts-ignore
                 ...getTransitionStyles[status],
               }}
