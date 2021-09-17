@@ -9,7 +9,7 @@ const TIMEOUT: number = 150
 
 const getTransitionStyles = {
   entering: {
-    position: `absolute`,
+    position: `fixed`,
     opacity: 0,
     //transform: `translateX(50px)`,
   },
@@ -17,7 +17,7 @@ const getTransitionStyles = {
     transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
     opacity: 1,
     //transform: `translateX(0px)`,
-    animation: "blink .2s linear 2",
+    //animation: "blink .2s linear 2",
   },
   exiting: {
     transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
