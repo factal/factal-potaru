@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { TransitionGroup, Transition as ReactTransition } from 'react-transition-group'
 
 type Props = {
@@ -25,12 +25,6 @@ const getTransitionStyles = {
 
 const Transition: React.FC<Props> = (props) => {
 
-  useEffect(() => {
-    const xpos = document.documentElement.scrollLeft || document.body.scrollLeft;
-    const ypos = document.documentElement.scrollTop || document.body.scrollTop;
-  })
-  
-
   return (
     <TransitionGroup>
       <ReactTransition key={props.location} timeout={{ enter: TIMEOUT }}>
@@ -40,7 +34,6 @@ const Transition: React.FC<Props> = (props) => {
               style={{
                 opacity: 1,
                 margin: 0,
-                width: '100%',
                 height: '100%',
                 position: 'absolute',
                 //@ts-ignore
