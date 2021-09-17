@@ -20,25 +20,21 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>
 const Page: NextPage<PageProps> = (props) => {
   const { siteData, blogList, tagList } = props
 
-  if (process.browser) {
-    renderKatex()
-  }
-
   return (
     <main>
+      <div className='container'>
 
+        <title>factal-potaru</title>
 
+        <Introduction/>
 
-      <title>factal-potaru</title>
+        <h2>blog</h2> 
 
-      <Introduction/>
+        <Container articleList={blogList} tagList={tagList} />
 
-      <h2>blog</h2> 
+        <h3 style={{textAlign: 'center'}}>POWERED BY SUPER UNCHI CODING</h3>
 
-      <Container articleList={blogList} tagList={tagList} />
-
-      <h3 style={{textAlign: 'center'}}>POWERED BY SUPER UNCHI CODING</h3>
-
+      </div>
     </main>
   )
 }

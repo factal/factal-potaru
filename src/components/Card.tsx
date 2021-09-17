@@ -1,8 +1,8 @@
-import React from 'react'
 import Link from 'next/link'
 import { ArticleResponse } from '../types/article'
 
 import styles from './Card.module.sass'
+import Tag from './Tag'
 
 type Props = {
   article: ArticleResponse
@@ -14,7 +14,7 @@ const Card: React.FC<Props> = (props) => {
       <div className={styles.card}>
         <div className={styles.tags}>
           {props.article.tags.map( (tag) => {
-            return <div className={styles.tag} key={tag.id} >{tag.name}</div>
+            return <Tag id={tag.id} name={tag.name} key={tag.id} />
           })}
         </div>
 

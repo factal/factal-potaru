@@ -2,45 +2,42 @@ import { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } fro
 import { useRouter } from 'next/dist/client/router'
 import { useEffect } from 'react'
 import BackButton from '../../../src/components/BackButton'
-
+import Note from '../../../src/components/Note'
 import { ArticleResponse } from '../../../src/types/article'
 import { client } from '../../../src/utils/api'
 import renderKatex from '../../../src/utils/renderKatex'
 import { toStringId } from '../../../src/utils/toStringId'
 
+import cheerio from 'cheerio'
+import { Heading } from '../../../src/types/heading'
+
+
+
 type StaticProps = {
   blog: ArticleResponse
+  toc: Heading[]
   draftKey?: string
 }
+
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>
 
-
 const Page: NextPage<PageProps> = (props) => {
-  const { blog } = props
+  const { blog, toc } = props
   const router = useRouter()
 
   if (router.isFallback) {
     return <div>Loading...</div>
   }
 
-  useEffect( () => {
-    router.events.on('routeChangeComplete', renderKatex)
-
-    return () => {
-      router.events.off('hashChangeComplete', renderKatex)
-    }
-  }, [])
-
   return (
     <main>
+      <div className='container'>
 
-      <BackButton />
-
-      <title>{blog.title}</title>
-
-      <h1>{blog.title}</h1>
-      <div dangerouslySetInnerHTML={{__html: blog.body}}/>
-
+        <title>{blog.title}</title>
+        <BackButton />
+        <Note article={blog} toc={toc} />
+        
+      </div>
     </main>
   )
 }
@@ -64,11 +61,25 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   try {
     const blog = await client.v1.articles._id(id).$get({
       query: {
-        fields: 'id,title,body,publishedAt,tags,enableMath',
-      },
+        fields: 'id,title,body,publishedAt,tags,enableMath'
+      }
     })
+
+    const $ = cheerio.load(blog.body)
+    const headings = $('h1, h2, h3').toArray()
+    const toc = headings.map( (domNode) => {
+      return {
+        //@ts-ignore
+        id: domNode.attribs.id,
+        //@ts-ignore
+        text: domNode.children[0].data,
+        //@ts-ignore
+        name: domNode.name
+      }
+    })
+    
     return {
-      props: { blog },
+      props: { blog, toc },
       revalidate: 60,
     }
   } catch (e) {

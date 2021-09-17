@@ -1,6 +1,7 @@
-import renderMathInElement from "katex/dist/contrib/auto-render"
+import renderMathInElement from 'katex/dist/contrib/auto-render'
 
- const renderKatex = () => {
+
+const renderKatex = () => {
   renderMathInElement(document.body, {
     delimiters: [
       {left: "$$", right: "$$", display: true},
