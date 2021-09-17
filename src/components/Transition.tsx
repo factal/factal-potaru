@@ -30,14 +30,16 @@ const Transition: React.FC<Props> = (props) => {
       <ReactTransition key={props.location} timeout={{ enter: TIMEOUT }}>
         { (status) => {
           return (
-            <div id={props.location}
+            <div id={props.location} className='pageTransition'
               style={{
                 opacity: 1,
                 margin: 0,
                 height: '100%',
-                position: 'absolute',
+                
                 //@ts-ignore
                 ...getTransitionStyles[status],
+
+                
               }}
             >
               {props.children}
