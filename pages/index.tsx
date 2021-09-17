@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 
 import { InferGetStaticPropsType, NextPage, GetStaticProps } from 'next'
+import Head from 'next/head'
 import { ArticleListResponse } from '../src/types/article'
 import { SiteDataResponse } from '../src/types/siteData'
 import { client } from '../src/utils/api'
 import Introduction from '../src/components/Introduction'
 import Container from '../src/components/Container'
 import { TagListResponse } from '../src/types/tag'
-import renderKatex from '../src/utils/renderKatex'
+
 
 type StaticProps = {
   siteData: SiteDataResponse
@@ -22,9 +23,12 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <main>
-      <div className='container'>
 
+      <Head>
         <title>factal-potaru</title>
+      </Head>
+
+      <div className='container'>
 
         <Introduction/>
 
@@ -35,6 +39,7 @@ const Page: NextPage<PageProps> = (props) => {
         <h3 style={{textAlign: 'center'}}>POWERED BY SUPER UNCHI CODING</h3>
 
       </div>
+
     </main>
   )
 }

@@ -1,6 +1,6 @@
 import { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useRouter } from 'next/dist/client/router'
-import { useEffect } from 'react'
+import Head from 'next/head'
 import BackButton from '../../../src/components/BackButton'
 import Note from '../../../src/components/Note'
 import { ArticleResponse } from '../../../src/types/article'
@@ -9,6 +9,7 @@ import { toStringId } from '../../../src/utils/toStringId'
 
 import cheerio from 'cheerio'
 import { Heading } from '../../../src/types/heading'
+
 
 
 
@@ -30,13 +31,19 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <main>
+
+      <Head>
+        <title>{blog.title}</title>
+      </Head>
+      
+
       <div className='container'>
 
-        <title>{blog.title}</title>
         <BackButton />
         <Note article={blog} toc={toc} />
         
       </div>
+
     </main>
   )
 }
