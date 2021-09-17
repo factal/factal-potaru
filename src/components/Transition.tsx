@@ -9,7 +9,7 @@ const TIMEOUT: number = 150
 
 const getTransitionStyles = {
   entering: {
-    position: `absolute`,
+    position: `sticky`,
     opacity: 0,
     //transform: `translateX(50px)`,
   },
