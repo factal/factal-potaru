@@ -1,35 +1,51 @@
 import React, { useEffect } from 'react'
-
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
+import { useRouter } from 'next/dist/client/router'
+import NProgress from 'nprogress'
 
 import Header from '../src/components/Header'
-import renderKatex from '../src/utils/renderKatex'
-import '../styles/globals.sass'
-import Transition from '../src/components/Transition'
-import { useRouter } from 'next/dist/client/router'
+import Head from 'next/head'
+import CssBaseline from '@mui/material/CssBaseline'
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import { ThemeProvider } from '@mui/material/styles'
 
-import NProgress from 'nprogress'
+import renderKatex from '../src/utils/renderKatex'
+import createEmotionCache from '../src/utils/createEmotionCache'
+import theme from '../styles/theme'
+
+
+import Transition from '../src/components/Transition'
+
+import '../styles/globals.sass'
 import '../public/nprogress.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
+
+
+const clientSideEmotionCache = createEmotionCache()
+
+interface FactalAppProps extends AppProps {
+  emotionCache?: EmotionCache
+}
+
+function FactalApp(props: FactalAppProps) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+
   const router = useRouter()
 
   useEffect( () => {
     const handleStart = (url: string) => {
-      console.log(`Loading: ${url}`)
       NProgress.start()
     }
     const handleStop = () => {
       NProgress.done()
     }
 
-    renderKatex()
-
     router.events.on('routeChangeStart', handleStart)
     router.events.on('routeChangeComplete', handleStop)
     router.events.on('routeChangeError', handleStop)
 
+    renderKatex()
+    
     return () => {
       router.events.off('routeChangeStart', handleStart)
       router.events.off('routeChangeComplete', handleStop)
@@ -38,18 +54,27 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router])
 
   return (
-    <>
-      <Head key='loadKaTeX'>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossOrigin="anonymous" />
+    <CacheProvider value={emotionCache}>
+
+      <Head>
+        <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
  
-      <Header/>
-      
-      <Transition location={router.pathname} >
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header />
         <Component {...pageProps} />
-      </Transition>
-    </>
+      </ThemeProvider>
+
+      <Header/>
+
+      
+      
+      {/* <Transition location={router.pathname} > */}
+        
+      {/* </Transition> */}
+    </CacheProvider>
   )
 }
 
-export default MyApp
+export default FactalApp
